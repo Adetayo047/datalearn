@@ -1,0 +1,18 @@
+.grid { display: grid; grid-template-columns: repeat(2, minmax(0, 440px)); gap: clamp(16px, 3vw, 40px); }
+.grid.compact { grid-template-columns: repeat(2, minmax(0, 360px)); }
+@media (max-width: 700px) { .grid, .grid.compact { grid-template-columns: minmax(0, 1fr); } }
+.card { display: grid; gap: 18px; align-content: start; }
+.photo { position: relative; aspect-ratio: 4 / 5; max-width: 100%; overflow: hidden; border-radius: var(--radius); background: var(--concrete); }
+.compact .photo { aspect-ratio: 1 / 1; }
+.photo :global(img) { transition: transform .8s cubic-bezier(.2,.7,.2,1), filter .6s ease; filter: saturate(.92); }
+.card:hover .photo :global(img) { transform: scale(1.04); filter: saturate(1.05); }
+.photo::after { content: ""; position: absolute; inset: 0; background: linear-gradient(180deg, transparent 55%, rgba(10, 36, 32, .55)); pointer-events: none; }
+.corner { position: absolute; width: 22px; height: 22px; border-color: var(--ascent); border-style: solid; z-index: 1; transition: inset .4s ease; }
+.corner[data-c="tl"] { top: 14px; left: 14px; border-width: 2px 0 0 2px; }
+.corner[data-c="br"] { bottom: 14px; right: 14px; border-width: 0 2px 2px 0; }
+.card:hover .corner[data-c="tl"] { top: 8px; left: 8px; }
+.card:hover .corner[data-c="br"] { bottom: 8px; right: 8px; }
+.tag { position: absolute; left: 18px; bottom: 16px; z-index: 1; font-family: var(--font-mono); font-size: .72rem; letter-spacing: .12em; text-transform: uppercase; color: #fff; background: rgba(10, 36, 32, .6); backdrop-filter: blur(6px); padding: 5px 10px; border-radius: 3px; }
+.body { display: grid; gap: 8px; }
+.name { font-size: var(--step-2); font-weight: 800; letter-spacing: -.02em; }
+.bio { color: var(--muted); max-width: 52ch; }

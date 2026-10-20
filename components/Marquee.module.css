@@ -1,0 +1,16 @@
+.band { background: var(--span); color: var(--on-span); overflow: hidden; border-block: 1px solid var(--span-strong); }
+.track { display: flex; width: max-content; }
+.row { list-style: none; display: flex; gap: 40px; padding: 18px 20px; margin: 0; flex: none; }
+.row li { display: inline-flex; align-items: center; gap: 14px; font-family: var(--font-display); font-weight: 600; font-size: clamp(1.1rem, 2vw, 1.5rem); letter-spacing: -.01em; white-space: nowrap; }
+.mark, .amberMark { width: 12px; height: 12px; flex: none; background: currentColor; opacity: .5; clip-path: polygon(0 100%, 0 55%, 33% 55%, 33% 30%, 66% 30%, 66% 0, 100% 0, 100% 100%); }
+.amberMark { background: var(--ascent); opacity: 1; }
+@media (prefers-reduced-motion: no-preference) {
+  .track { animation: slide 45s linear infinite; }
+  .band:hover .track { animation-play-state: paused; }
+  @keyframes slide { to { transform: translateX(-50%); } }
+}
+@media (prefers-reduced-motion: reduce) {
+  .track { width: auto; }
+  .row { flex-wrap: wrap; row-gap: 12px; }
+  .row[aria-hidden] { display: none; }
+}

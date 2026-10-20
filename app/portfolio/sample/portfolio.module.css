@@ -1,0 +1,27 @@
+.banner { background: color-mix(in srgb, var(--ascent) 70%, var(--paper)); color: var(--ascent-ink); padding-block: 12px; font-size: .95rem; }
+.head { padding-block: clamp(40px, 6vw, 80px); border-bottom: 1px solid var(--line); }
+.headGrid { display: grid; grid-template-columns: auto 1fr; gap: clamp(20px, 4vw, 40px); align-items: center; }
+.avatar { width: clamp(88px, 14vw, 140px); aspect-ratio: 1; max-width: 100%; border-radius: 50%; background: var(--span); color: var(--on-span); display: grid; place-items: center; font-family: var(--font-display); font-weight: 800; font-size: clamp(1.8rem, 4vw, 3rem); }
+.name { font-size: var(--step-4); }
+@media (max-width: 600px) { .headGrid { grid-template-columns: 1fr; } }
+
+.scores { display: grid; gap: 14px; }
+.row { display: grid; grid-template-columns: 180px minmax(0, 1fr) 90px; gap: 16px; align-items: center; }
+.skill { font-weight: 600; }
+.track { position: relative; height: 14px; background: var(--concrete); border-radius: 2px; }
+.before { position: absolute; left: 0; top: 0; bottom: 0; background: color-mix(in srgb, var(--span) 40%, var(--paper)); }
+.after { position: absolute; top: 0; bottom: 0; background: var(--span); }
+.val { text-align: right; font-family: var(--font-mono); font-size: .9rem; color: var(--muted); }
+.val b { color: var(--ink); }
+.legend { display: flex; gap: 20px; flex-wrap: wrap; font-size: .85rem; color: var(--muted); margin-top: 6px; }
+.legend span { display: inline-flex; gap: 8px; align-items: center; }
+.legend i { width: 14px; height: 10px; display: inline-block; }
+.lb { background: color-mix(in srgb, var(--span) 40%, var(--paper)); }
+.la { background: var(--span); }
+@media (max-width: 600px) { .row { grid-template-columns: 1fr auto; } .track { grid-column: 1 / -1; grid-row: 2; } }
+
+.meta { margin: 4px 0 0; display: grid; grid-template-columns: repeat(3, minmax(0, 1fr)); gap: 12px; }
+.meta dd { margin: 4px 0 0; font-size: .92rem; }
+@media (max-width: 500px) { .meta { grid-template-columns: 1fr; } }
+.quote { margin: 8px 0 0; padding: 14px 16px; border-left: 3px solid var(--span); background: var(--paper); font-style: italic; display: grid; gap: 8px; }
+.quote footer { font-style: normal; }

@@ -1,0 +1,19 @@
+.ruler { display: grid; gap: 10px; }
+.bar { display: flex; gap: 3px; height: 44px; }
+.bar span { flex-basis: 0; background: var(--span); display: flex; align-items: center; padding-inline: 10px; color: var(--on-span); min-width: 0; }
+.bar span[data-last="true"] { background: var(--ascent); color: var(--ascent-ink); }
+.bar em { font-style: normal; font-family: var(--font-mono); font-size: .75rem; white-space: nowrap; }
+.ticks { position: relative; height: 18px; font-family: var(--font-mono); font-size: .7rem; color: var(--muted); }
+.ticks span { position: absolute; transform: translateX(-50%); }
+.ticks span:first-child { transform: none; }
+.ticks span:last-child { transform: translateX(-100%); }
+.list { list-style: none; display: flex; gap: 3px; margin-top: 18px; }
+.list li { flex-basis: 0; min-width: 0; display: grid; gap: 8px; align-content: start; padding: 18px 16px 0 0; border-top: 2px solid var(--ink); }
+.list h3 { font-size: 1.15rem; }
+.list p { color: var(--muted); font-size: .95rem; }
+@media (max-width: 760px) {
+  .list { flex-direction: column; gap: 0; }
+  .list li { padding: 16px 0; }
+  .bar em { font-size: .65rem; }
+  .ticks span:nth-child(2n) { display: none; }
+}

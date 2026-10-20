@@ -1,0 +1,29 @@
+.stack { position: relative; height: 380px; max-width: 420px; margin-inline: auto; }
+.card {
+  position: absolute; left: 50%; top: 50%; width: min(340px, 86%); background: var(--card); border: 1px solid var(--line); border-radius: 10px;
+  box-shadow: 0 28px 50px -30px rgba(15, 28, 26, .55); display: grid; gap: 14px; padding: 16px;
+  transform: translate(-50%, -50%) translate(calc((var(--n) - 1) * 26px), calc((var(--n) - 1) * -34px)) rotate(calc((var(--n) - 1) * 5deg));
+}
+.card:nth-child(3) { z-index: 3; }
+.card:nth-child(2) { z-index: 2; }
+.top { display: flex; align-items: center; gap: 12px; }
+.top svg { width: 24px; height: 24px; margin-left: auto; }
+.avatar { width: 40px; height: 40px; border-radius: 50%; background: var(--span); color: var(--on-span); display: grid; place-items: center; font-weight: 700; font-size: .85rem; }
+.who { display: grid; line-height: 1.2; }
+.who strong { font-size: .95rem; }
+.who span { font-size: .8rem; color: var(--muted); }
+.rows { display: grid; grid-template-columns: auto 1fr; gap: 10px 14px; align-items: center; font-family: var(--font-mono); font-size: .68rem; color: var(--muted); }
+.prog { display: block; height: 8px; border-radius: 4px; background: linear-gradient(90deg, var(--span) var(--w), var(--concrete) var(--w)); }
+.meter { display: flex; gap: 3px; }
+.meter b { flex: 1; height: 8px; border-radius: 2px; background: var(--concrete); }
+.meter b[data-on="true"] { background: var(--span); }
+.meter b[data-on="true"]:last-child { background: var(--ascent); }
+.foot { display: flex; justify-content: space-between; align-items: center; font-family: var(--font-mono); font-size: .68rem; color: var(--muted); border-top: 1px solid var(--line); padding-top: 10px; }
+.stamp { color: var(--ascent-ink); background: var(--ascent); padding: 3px 8px; border-radius: 3px; letter-spacing: .06em; text-transform: uppercase; }
+
+@media (prefers-reduced-motion: no-preference) {
+  .card { animation: deal .9s cubic-bezier(.2,.9,.3,1.1) both; animation-delay: calc(.3s + var(--n) * .18s); }
+  .stack:hover .card { transition: transform .5s cubic-bezier(.2,.8,.2,1); transform: translate(-50%, -50%) translate(calc((var(--n) - 1) * 46px), calc((var(--n) - 1) * -50px)) rotate(calc((var(--n) - 1) * 8deg)); }
+  @keyframes deal { from { opacity: 0; transform: translate(-50%, -20%) rotate(-12deg) scale(.9); } }
+}
+@media (max-width: 500px) { .stack { height: 320px; } }
