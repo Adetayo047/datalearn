@@ -3,12 +3,19 @@ import path from "node:path";
 import { randomUUID } from "node:crypto";
 
 const DIR = path.join(process.cwd(), "data", "submissions");
+// Serverless hosts such as Vercel have a read-only file system, so files are not kept there.
+const CAN_WRITE_FILES = !process.env.VERCEL && !process.env.AWS_LAMBDA_FUNCTION_NAME;
 
-// Each form kind gets its own JSON Lines file: one submission per line.
+// Locally, each form kind gets its own JSON Lines file: one submission per line.
+// On serverless hosts, the record goes to the function logs; set up email (below) to receive it.
 export async function saveSubmission(kind: string, data: Record<string, unknown>) {
-  await mkdir(DIR, { recursive: true });
   const record = { id: randomUUID(), kind, receivedAt: new Date().toISOString(), data };
-  await appendFile(path.join(DIR, `${kind}.jsonl`), JSON.stringify(record) + "\n", "utf8");
+  if (CAN_WRITE_FILES) {
+    await mkdir(DIR, { recursive: true });
+    await appendFile(path.join(DIR, `${kind}.jsonl`), JSON.stringify(record) + "\n", "utf8");
+  } else {
+    console.log(`[submission] ${JSON.stringify(record)}`);
+  }
   return record;
 }
 

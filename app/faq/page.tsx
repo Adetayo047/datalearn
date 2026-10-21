@@ -2,6 +2,7 @@ import type { Metadata } from "next";
 import Link from "next/link";
 import { PageHero, Sheet } from "@/components/Blocks";
 import { faqs } from "@/content/site";
+import AskButton from "@/components/AskButton";
 
 export const metadata: Metadata = {
   title: "FAQ",
@@ -18,7 +19,16 @@ export default function Faq() {
   return (
     <>
       <script type="application/ld+json" dangerouslySetInnerHTML={{ __html: JSON.stringify(jsonLd) }} />
-      <PageHero label="FAQ" title="Questions, answered plainly." accent="answered plainly." />
+      <PageHero
+        label="FAQ"
+        title="Questions, answered plainly."
+        accent="answered plainly."
+        lede="Browse the common questions below, or ask our AI assistant anything about the programme. It answers from the information on this website."
+      >
+        <div className="btn-row">
+          <AskButton />
+        </div>
+      </PageHero>
       {groups.map((g, i) => (
         <section key={g} className={`section ${i % 2 ? "tint" : ""}`}>
           <div className="wrap narrow">
@@ -39,9 +49,9 @@ export default function Faq() {
       <section className="section">
         <div className="wrap narrow">
           <p className="lede">
-            Didn&apos;t find your answer?{" "}
+            Didn&apos;t find your answer? Ask the assistant using the button at the bottom of the screen, or{" "}
             <Link href="/contact" className="link">
-              Ask us directly
+              contact the team directly
             </Link>
             .
           </p>
